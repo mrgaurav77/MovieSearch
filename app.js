@@ -23,23 +23,41 @@ loader.classList.add('d-none')
 function searchMovie(){
     loader.classList.remove('d-none')
     let movieName = document.getElementById('movieName')
-    let query = api+movieName.value
-    fetch(query).then((data)=>{
-        return data.json()
-    }).then((data)=>{
+    let name = movieName.value.trim()
+
+    if(!name){
         loader.classList.add('d-none')
+        alert('Please enter a movie name.')
+        return
+    }
+
+    let query = api + encodeURIComponent(name)
+    fetch(query)
+    .then((res) => res.json())
+    .then((data)=>{
+        loader.classList.add('d-none')
+        if(data.Response === 'False'){
+            container.classList.add('d-none')
+            alert('Movie not found. Please check the title and try again.')
+            return
+        }
         container.classList.remove('d-none')
-        title.innerText = data.Title
-        title.innerText = data.Title;
-        date.innerText = data.Released;
-        director.innerText = data.Director;
-        actors.innerText = data.Actors;
-        genre.innerText = data.Genre;
-        dese.innerText = data.Plot;
-        collection.innerText = data.BoxOffice;
-        awards.innerText = data.Awards;
-        writer.innerText = data.Writer;
-        ratings.innerText = data.imdbRating;
-        img.src = data.Poster;
+        title.innerText = data.Title || 'N/A'
+        date.innerText = data.Released || 'N/A'
+        director.innerText = data.Director || 'N/A'
+        actors.innerText = data.Actors || 'N/A'
+        genre.innerText = data.Genre || 'N/A'
+        dese.innerText = data.Plot || 'N/A'
+        collection.innerText = data.BoxOffice || 'N/A'
+        awards.innerText = data.Awards || 'N/A'
+        writer.innerText = data.Writer || 'N/A'
+        ratings.innerText = data.imdbRating || 'N/A'
+        img.src = (data.Poster && data.Poster !== 'N/A') ? data.Poster : 'assets/placeholder.png'
+    })
+    .catch((err)=>{
+        loader.classList.add('d-none')
+        container.classList.add('d-none')
+        alert('An error occurred while searching. Please try again.')
+        console.error(err)
     })
 }

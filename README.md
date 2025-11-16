@@ -27,6 +27,6 @@ https://mrgaurav77.github.io/MovieSearch/
 - **HTML** – Page structure  
 - **CSS** – Styling & layout  
 - **JavaScript** – API handling & dynamic rendering  
-- **OMDb / TMDB API** (whichever you used)
+- **OMDB API** 
 
 ---
