@@ -1,6 +1,6 @@
 # 🎬 Movie Search App  
 A fast and responsive movie search application built by **Gaurav Kolhe**, using **HTML, CSS, and JavaScript**.  
-It uses a public movie API to fetch details like **movie titles, posters, release year, and more** — all in real time.
+It uses a public movie API to fetch details like **movie titles, posters, release year, and more** all in real time.
 
 ---
 
